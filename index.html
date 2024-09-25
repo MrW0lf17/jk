@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شرکت جهان کیمیا - تجهیزات پزشکی و آزمایشگاهی</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #e8491d;
+            --light-color: #f4f4f4;
+            --dark-color: #333;
+            --max-width: 1100px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: auto;
+            overflow: hidden;
+            padding: 0 2rem;
+        }
+
+        /* Enhanced Header Styles */
+        header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.sticky {
+            padding: 0.5rem 0;
+            background: rgba(0, 86, 179, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            padding: 0.75rem;
+            margin: 0 0.25rem;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .navbar ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* 3D Logo Animation */
+        .logo {
+            display: flex;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .logo img {
+            width: 50px;
+            margin-left: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover img {
+            transform: rotateY(180deg);
+        }
+
+        /* Enhanced Showcase Styles */
+        #showcase {
+            background: url('/api/placeholder/1600/900') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            margin-top: 60px;
+            overflow: hidden;
+        }
+
+        #showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+        }
+
+        #showcase .showcase-content {
+            z-index: 1;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #showcase h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        #showcase p {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced Services Styles */
+        #services {
+            padding: 4rem 0;
+            background: #fff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), transparent);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .service-card:hover::before {
+            top: 0;
+            opacity: 0.1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Enhanced Products Styles */
+        #products {
+            padding: 4rem 0;
+            background-color: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #products::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        #products::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .product-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover h3 {
+            color: var(--secondary-color);
+        }
+
+        /* Enhanced Footer Styles */
+        footer {
+            background: var(--dark-color);
+            color: #fff;
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .footer-section:hover h3::after {
+            width: 100%;
+        }
+
+        .footer-section p {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item i {
+            color: var(--secondary-color);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .social-section {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-5px) rotate(15deg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .footer-row {
+                flex-direction: column;
+            }
+
+            .footer-section {
+                width: 100%;
+            }
+        }
+        #testimonials {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f6f9fc 0%, #f1f4f8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #testimonials::before,
+        #testimonials::after {
+            content: '"';
+            font-size: 20rem;
+            position: absolute;
+            opacity: 0.1;
+            font-family: Arial, sans-serif;
+            color: var(--primary-color);
+        }
+
+        #testimonials::before {
+            top: -50px;
+            left: 20px;
+        }
+
+        #testimonials::after {
+            bottom: -100px;
+            right: 20px;
+            transform: rotate(180deg);
+        }
+
+        #testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        #testimonials h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 10px auto;
+            transition: width 0.3s ease;
+        }
+
+        #testimonials:hover h2::after {
+            width: 100px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: height 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .testimonial-card:hover::before {
+            height: 10px;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card p::before,
+        .testimonial-card p::after {
+            content: '"';
+            font-size: 3rem;
+            position: absolute;
+            opacity: 0.1;
+            font-family: Arial, sans-serif;
+        }
+
+        .testimonial-card p::before {
+            top: -20px;
+            left: -10px;
+        }
+
+        .testimonial-card p::after {
+            bottom: -40px;
+            right: -10px;
+        }
+
+        .testimonial-card .client {
+            font-weight: bold;
+            text-align: left;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        .testimonial-card:hover .client {
+            color: var(--secondary-color);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .testimonial-card {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .testimonial-card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .testimonial-card:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar container">
+            <div class="logo">
+                <img src="/api/placeholder/50/50" alt="جهان کیمیا لوگو">
+                <h1>شرکت جهان کیمیا</h1>
+            </div>
+            <ul>
+                <li><a href="#home">خانه</a></li>
+                <li><a href="#services">خدمات</a></li>
+                <li><a href="#products">محصولات</a></li>
+                <li><a href="#testimonials">نظرات مشتریان</a></li>
+                <li><a href="#contact">تماس با ما</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="showcase">
+        <div class="showcase-content">
+            <h1>شرکت جهان کیمیا</h1>
+            <p>ارائه دهنده برتر تجهیزات پزشکی و آزمایشگاهی در ارومیه</p>
+            <a href="#contact" class="btn">تماس با ما</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>خدمات ما</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>فروش تجهیزات پزشکی</h3>
+                    <p>ارائه انواع تجهیزات پزشکی با کیفیت بالا برای مراکز درمانی و بیمارستان‌ها</p>
+                </div>
+                <div class="service-card">
+                    <h3>فروش تجهیزات آزمایشگاهی</h3>
+                    <p>تأمین تجهیزات آزمایشگاهی پیشرفته برای مراکز تحقیقاتی و آزمایشگاه‌ها</p>
+                </div>
+                <div class="service-card">
+                    <h3>مشاوره تخصصی</h3>
+                    <p>ارائه خدمات مشاوره‌ای برای انتخاب بهترین تجهیزات متناسب با نیاز مشتریان</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="container">
+            <h2>محصولات ما</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <h3>تجهیزات آزمایشگاهی</h3>
+                    <p>انواع دستگاه‌های آزمایشگاهی پیشرفته برای تحقیقات و آنالیز</p>
+                </div>
+                <div class="product-card">
+                    <h3>لوازم پزشکی</h3>
+                    <p>تجهیزات پزشکی مدرن برای مراقبت‌های بهداشتی و درمانی</p>
+                </div>
+                <div class="product-card">
+                    <h3>محصولات شیمیایی</h3>
+                    <p>مواد شیمیایی با خلوص بالا برای کاربردهای آزمایشگاهی و صنعتی</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <h2>نظرات مشتریان</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"شرکت جهان کیمیا با ارائه محصولات با کیفیت و خدمات عالی، همواره پاسخگوی نیازهای ما بوده است."</p>
+                    <p class="client">- بیمارستان تخصصی شهید عارفیان</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"کیفیت تجهیزات و مشاوره‌های تخصصی جهان کیمیا، ما را در انجام تحقیقات دقیق یاری کرده است."</p>
+                    <p class="client">- مرکز تحقیقات پزشکی ارومیه</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"خدمات مشتری عالی و تحویل به موقع محصولات، جهان کیمیا را به شریکی قابل اعتماد تبدیل کرده است."</p>
+                    <p class="client">- آزمایشگاه مرکزی دانشگاه ارومیه</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-row">
+                <div class="footer-section">
+                    <h3>درباره ما</h3>
+                    <p>شرکت جهان کیمیا، تحت مدیریت علی امجدی، یکی از شرکت‌های برجسته در زمینه تجهیزات پزشکی و آزمایشگاهی در ارومیه است. ما با ارائه محصولات با کیفیت و خدمات مشاوره‌ای، به دنبال تأمین نیازهای مشتریان خود هستیم.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>تماس با ما</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>ارومیه، خیابان کاشانی، بلوار باکری، جنب بانک رفاه</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <p>04432249257</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <p>شنبه تا پنجشنبه: ۸:۳۰ صبح تا ۷ شب<br>جمعه: تعطیل</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-row">
+                <div class="footer-section">
+                    <h3>موقعیت ما</h3>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3163.417302662485!2d45.073480023803704!3d37.54523095382906!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40055313076aa071%3A0x390b6feafc51255!2z2KrYrNmH24zYstin2Kog2KLYstmF2KfbjNi02q_Yp9mH24wg2Ygg2b7Ysti02qnbjCDYrNmH2KfZhiDaqduM2YXbjNin!5e0!3m2!1sen!2s!4v1727221372499!5m2!1sen!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="social-section">
+                <h3>ما را در شبکه‌های اجتماعی دنبال کنید</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 شرکت جهان کیمیا. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    
+<script>
+    // Sticky Header
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        header.classList.toggle('sticky', window.scrollY > 0);
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Scroll Reveal Animation
+    window.addEventListener('scroll', reveal);
+
+    function reveal() {
+        var reveals = document.querySelectorAll('.service-card, .product-card, .footer-section');
+
+        for(var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var revealTop = reveals[i].getBoundingClientRect().top;
+            var revealPoint = 150;
+
+            if(revealTop < windowHeight - revealPoint) {
+                reveals[i].classList.add('active');
+            } else {
+                reveals[i].classList.remove('active');
+            }
+        }
+    }
+</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const teamGrid = document.querySelector('.team-grid');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentPosition = 0;
+            const memberWidth = document.querySelector('.team-member').offsetWidth;
+            const totalMembers = document.querySelectorAll('.team-member').length;
+            const visibleMembers = 2; // Number of members visible at once
+            const maxPosition = (totalMembers - visibleMembers) * memberWidth;
+    
+            function updateSliderPosition() {
+                teamGrid.style.transform = `translateX(${-currentPosition}px)`;
+                prevBtn.disabled = currentPosition === 0;
+                nextBtn.disabled = currentPosition >= maxPosition;
+            }
+    
+            prevBtn.addEventListener('click', () => {
+                currentPosition = Math.max(currentPosition - memberWidth, 0);
+                updateSliderPosition();
+            });
+    
+            nextBtn.addEventListener('click', () => {
+                currentPosition = Math.min(currentPosition + memberWidth, maxPosition);
+                updateSliderPosition();
+            });
+    
+            // Touch swipe functionality
+            let touchStartX = 0;
+            let touchEndX = 0;
+    
+            teamGrid.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+    
+            teamGrid.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+    
+            function handleSwipe() {
+                if (touchStartX - touchEndX > 50) {
+                    // Swipe left (shows next items)
+                    prevBtn.click();
+                } else if (touchEndX - touchStartX > 50) {
+                    // Swipe right (shows previous items)
+                    nextBtn.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
